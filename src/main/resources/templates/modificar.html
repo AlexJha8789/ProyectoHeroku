@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      >
+    <head   th:replace="layout/plantilla :: head" >
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+    <body>
+        <header  th:replace="layout/plantilla :: header"></header>
+        <h2>[[#{producto.formulario}]]</h2>
+        <a th:href="@{/}"  >[[#{accion.regresar}]]</a>
+        <br/>
+        <form th:action="@{/guardar}" method="post"  th:object="${producto}" >
+            <input type="hidden" name="id_producto" th:field="*{id_producto}" />
+
+            <br/>
+            <label for="descripcion"  > [[#{producto.descripcion}]]:</label>
+            <input type="text" name="descripcion" th:field="*{descripcion}"            />
+            <span  th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Error Descripcion</span>
+
+
+            <br/>
+            <label for="precio"  > [[#{producto.precio}]]:</label>
+            <input type="text" name="precio" th:field="*{precio}"            />
+
+
+            <br/>
+            <label for="marca"  > [[#{producto.marca}]]:</label>
+            <input type="text" name="marca" th:field="*{marca}"            />
+            <span  th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}">Error marca</span>
+
+
+            <br/>
+            <label for="categoria"  > [[#{producto.categoria}]]:</label>
+            <input type="text" name="categoria" th:field="*{categoria}"            />
+            <span  th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}">Error categoria</span>
+            
+            <br/>
+            <label for="saldo"  > [[#{producto.saldo}]]:</label>
+            <input type="text" name="saldo" th:field="*{saldo}"            />
+            <span  th:if="${#fields.hasErrors('saldo')}" th:errors="*{saldo}">Error categoria</span>
+
+
+            <br/>
+            <input type="submit" name="guardar" value="Guardar"  />
+
+
+
+        </form>
+            <footer  th:replace="layout/plantilla :: footer"></footer>
+
+    </body>
+</html>

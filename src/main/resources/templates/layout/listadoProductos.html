@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      >
+    <head>
+        <title>Listado Producto</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+    <body>
+        <section   th:fragment="listadoProductos" id="productos" >
+
+            <div   class="container">
+                <div  class="row">
+                    <div  class="col-md-9">
+                        <div  class="card">
+                            <div  class="card-header">
+                                <h4>[[#{producto.titulo-lista}]]</h4>
+
+                            </div>
+
+
+                            <div  th:if="${productos !=null and  !productos.empty}" >
+
+                                <table  class="table table-striped">
+
+                                    <thead  class="thead-dark">
+
+
+                                        <tr>
+                                            <th>#</th>
+                                            <th th:text="#{producto.descripcion}"  >Descripcion</th>
+                                            <th th:text="#{producto.saldo}"  >Saldo</th>
+                                            <th> Imagen </th>
+                                            <th> </th>
+                                            <th> </th>
+
+
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr  th:each="producto , contador : ${productos}">
+
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${producto.descripcion} + ' ' +${producto.marca}]]</td>
+                                            <td>[[${new java.text.DecimalFormat('$#,##0.00').format(producto.saldo)}]]</td>
+                                            <td> <img src="zapatilla.jpg" height="100" width="100"></td>
+                                            <td>
+                                                <a  sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{/editar/} + ${producto.id_producto}" class="btn btn-primary">
+                                                    <i class="fas fa-angle-double-right" ></i> [[#{accion.editar}]]
+                                                </a>
+
+
+                                            </td>
+                                            <td>
+                                                <a  sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{/eliminar/} + ${producto.id_producto}" class="btn btn-dark">
+                                                    <i class="fas fa-angle-double-right" ></i> [[#{accion.eliminar}]]
+                                                </a>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+
+
+                                </table>
+
+                            </div>
+                            
+                            <div class="text-center p-2"  th:if="${productos==null or productos.empty}">
+                                <span   th:text="#{producto.lista-vacia}">Lista vacia</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div  class="col-md-3">
+                        
+                        <div  class="card  text-center  bg-danger text-white mb-3">
+                            
+                            <div  class="card-body">
+                                <h3   th:text="#{producto.saldoTotal}">Saldo Total</h3>
+                                <h4   class="display-5">
+                                   
+                                   
+                                   
+                              
+                                    
+                                </h4>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                         <div  class="card  text-center  bg-success text-white mb-3">
+                            
+                            <div  class="card-body">
+                                <h3   th:text="#{producto.saldoTotal}">Saldo Total</h3>
+                                <h4   class="display-5">
+                                    
+                                    <i  class="fa fa-users"></i>[[${totalProductos}]]
+                                    
+                                </h4>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      >
+    <head   th:replace="layout/plantilla :: head" >
+        <title>Inicio</title>
+
+
+    </head>
+    <body>
+        <header  th:replace="layout/plantilla :: header"></header>
+        <section   th:replace="layout/botonesAgregar :: botonesAgregar"  ></section>
+        <section   th:replace="layout/agregarProducto :: agregarProducto"  ></section>
+        <section   th:replace="layout/listadoProductos :: listadoProductos"  ></section>
+
+        <footer th:replace="layout/plantilla :: footer"          ></footer>  
+<!--        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}"  >[[#{producto.crear}]]</a>
+
+        <div   th:if="${productos != null and !productos.empty}"  >
+            <table border="1">
+                <tr>
+
+                    <th>[[#{producto.descripcion}]]</th>
+                    <th>[[#{producto.precio}]]</th>
+                    <th>[[#{producto.marca}]]</th>
+                    <th>[[#{producto.categoria}]]</th>
+                    <th   sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.editar}]]</th>
+                    <th  sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
+                </tr>
+                <tr   th:each="producto:${productos}" >
+
+                    <td  th:text="${producto.descripcion}" >Mostrar Descripcion</td>
+                    <td th:text="${producto.precio}"   >Mostrar Precio</td>
+                    <td  th:text="${producto.marca}" >Mostrar Marca</td>
+                    <td th:text="${producto.categoria}"  >Mostrar Categoria</td>
+                    <td  sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${producto.id_producto}" />[[#{accion.editar}]]</td>
+                    <td  sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar/} + ${producto.id_producto}" />[[#{accion.eliminar}]]</td>
+                </tr>
+
+            </table>   
+        </div>
+
+        <div  th:if="${productos==null or productos.empty}">
+            [[#{producto.lista-vacia}]]
+
+        </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>
